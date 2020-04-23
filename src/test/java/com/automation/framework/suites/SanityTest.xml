@@ -1,0 +1,30 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="Groups demo">
+	<listeners>
+		<listener
+			class-name="com.automation.framework.utils.Listeners.MyListener"></listener>
+	</listeners>
+	<parameter name="browser" value="chrome" />
+	<parameter name="isHeadless" value="false" />
+	<test name="Sanity Check">
+		<groups>
+			<define name="all">
+				<include name="sanity"></include>
+				<include name="happyPaths"></include>
+				<include name="TTF"></include>
+			</define>
+			<define name="sanityOnly">
+				<include name="sanity"></include>
+			</define>
+			<!-- Here we define which groups to include -->
+			<run>
+				<include name="sanityOnly"></include>
+			</run>
+		</groups>
+		<classes>
+			<class name="com.automation.tests.LoginTest"></class>
+			<class name="com.automation.tests.PracticeTest"></class>
+		</classes>
+	</test>
+</suite>
